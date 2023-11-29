@@ -1,7 +1,7 @@
+/* eslint-disable react/display-name */
 import   {useState, forwardRef,useImperativeHandle} from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-//import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -13,9 +13,8 @@ import MailIcon from '@mui/icons-material/Mail';
 
 
 
-const ToggleSideNavbar = (ref) => {
+const SideNavbar = forwardRef((_,ref) => {
     const [state, setState] = useState(false);
-   // console.log(ref)
       const toggleDrawer =  (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
@@ -30,14 +29,18 @@ const ToggleSideNavbar = (ref) => {
       const list = () => (
         
         <Box
-          sx={{ width: 250 }}
+          sx={{ width: 250
+          
+          }}
           role="presentation"
           onClick={(e)=>toggleDrawer(e)}
           onKeyDown={(e)=>toggleDrawer(e)}
         >
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem key={text} disablePadding>
+          <ListItemText primary={'MAIN MENU'} sx={{ paddingLeft:'1rem',paddingTop:'2rem' }} />
+
+          <List >
+            {['Home', 'Courses', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem key={text} disablePadding  >
                 <ListItemButton>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -48,23 +51,26 @@ const ToggleSideNavbar = (ref) => {
             ))}
           </List>
           <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+      <List>
+        {['Purchases', 'Admin', 'Spam'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+         
         </Box>
       );
   return (
     <div>
           <Drawer
+             sx={{ 
+             }}
             anchor={'left'}
             open={state}
             onClose={(e)=>toggleDrawer(e)}
@@ -73,8 +79,7 @@ const ToggleSideNavbar = (ref) => {
           </Drawer>
     </div>
   )
-}
+})
 
-const SideNavbar = forwardRef(ToggleSideNavbar)
 
 export default SideNavbar

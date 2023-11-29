@@ -13,7 +13,7 @@ const NavBar = () => {
     return (
         <Box sx={{ flexGrow: 1
          }} >
-      <AppBar position="static">
+      <AppBar position="static" >
         <Toolbar sx={{ backgroundColor: '#fafafa' }}>
           <SideNavbar ref={toggleSideNavbar}/>
           <IconButton
@@ -22,8 +22,8 @@ const NavBar = () => {
             color="black"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={()=>{
-              toggleSideNavbar.current.toggleSideBar()
+            onClick={(e)=>{
+              toggleSideNavbar.current.toggleSideBar(e)
             }}
           >
             <MenuIcon />
