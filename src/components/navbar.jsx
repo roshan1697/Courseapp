@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SideNavbar from './sidenavbar';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const toggleSideNavbar = useRef()
@@ -31,9 +32,12 @@ const NavBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'black' }}>
             CourseApp
           </Typography>
+          <Link to={`/courseapp/signup`}>
           <Button sx={{  color:'black' }} color="inherit">Signup</Button>
-
+          </Link>
+          <Link to={`/courseapp/signin`}>
           <Button sx={{  color:'black' }} color="inherit">Login</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
