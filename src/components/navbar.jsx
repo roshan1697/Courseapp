@@ -13,7 +13,7 @@ const NavBar = () => {
   const toggleSideNavbar = useRef()
     return (
         <Box sx={{ flexGrow: 1
-         }} >
+          }} >
       <AppBar position="static" >
         <Toolbar sx={{ backgroundColor: '#fafafa' }}>
           <SideNavbar ref={toggleSideNavbar}/>
@@ -32,10 +32,10 @@ const NavBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'black' }}>
             CourseApp
           </Typography>
-          <Link to={`/courseapp/signup`}>
+          <Link to='/courseapp/signup'>
           <Button sx={{  color:'black' }} color="inherit">Signup</Button>
           </Link>
-          <Link to={`/courseapp/signin`}>
+          <Link to='/courseapp/signin'>
           <Button sx={{  color:'black' }} color="inherit">Login</Button>
           </Link>
         </Toolbar>

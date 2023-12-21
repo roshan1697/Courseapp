@@ -1,8 +1,8 @@
 import express from "express"
-import {Course , User} from "../modal/coursemodal"
-import { jwt } from "jsonwebtoken"
-import { SECRET } from "../config"
-import authJwt from "../middleware/jsonwt"
+import {Course , User} from "../modal/coursemodal.js"
+import  jwt  from "jsonwebtoken"
+import { SECRET } from "../config.js"
+import authJwt from "../middleware/jsonwt.js"
 
 const router = express.Router()
 
