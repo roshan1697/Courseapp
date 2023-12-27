@@ -12,9 +12,16 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
   const toggleSideNavbar = useRef()
     return (
-        <Box sx={{ flexGrow: 1
+        <Box sx={{ flexGrow: 1,
+          position:'sticky',
+          zIndex:'1',
+          top:'0.5rem'
+          
           }} >
-      <AppBar position="static" >
+      <AppBar position="static"  style={{
+          width:'98vw',
+          
+      }}>
         <Toolbar sx={{ backgroundColor: '#fafafa' }}>
           <SideNavbar ref={toggleSideNavbar}/>
           <IconButton

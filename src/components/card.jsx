@@ -12,8 +12,8 @@ const CardLayout = () => {
     <Card sx={{ maxWidth: 345 }}>
     <CardMedia
       sx={{ height: 140 }}
-      image="/static/images/cards/contemplative-reptile.jpg"
-      title="green iguana"
+      image="https://images.inc.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg"
+      title="course"
     />
     <CardContent>
       <Typography gutterBottom variant="h5" component="div">

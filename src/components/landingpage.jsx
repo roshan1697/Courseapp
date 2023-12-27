@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 const LandingPage = () => {
   return (
     <Box style={{
-        padding:'2rem'
+        padding:'2rem',
+        
     }} >
         <Grid container  spacing={2}>
             <Grid item xs={12} md={6} style={{
