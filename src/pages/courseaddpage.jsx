@@ -1,8 +1,40 @@
-import { Box, Button, Card, Checkbox, InputAdornment, TextField, Typography } from "@mui/material"
+import { Alert, Box, Button, Card, Checkbox, InputAdornment, TextField, Typography } from "@mui/material"
 import NavBar from "../components/navbar"
+import { useState } from "react"
+import axios from "axios"
 
 
 const CourseAddPage = () => {
+    const [title,setTitle] = useState('')
+    const [description,setDescription] = useState('')
+    const [imageURL,setImageURL] = useState('')
+    const [price,setPrice] = useState(0)
+    const [publish, setPublish] = useState(true)
+
+    
+
+    const handleClick = async() =>{
+        try {
+
+            await axios.post('http://localhost:3000/admin/course',{
+                title: title,
+                description:description,
+                imagelink:imageURL,
+                price:price,
+                published:publish
+            },{
+                headers:{
+                    'Authorization':'Bearer ' + localStorage.getItem('token')
+                }
+            })
+                
+        }
+        catch(err){
+            console.log(err)
+        }
+}
+    
+
   return (
     <>
     <NavBar/>
@@ -19,17 +51,28 @@ const CourseAddPage = () => {
                     <TextField required 
                     style={{marginBottom:10}}
                     fullWidth={true}
-                    label='Title'/>
+                    label='Title'
+                    onChange={(e)=>{
+                        setTitle(e.target.value)
+                    }}
+                    />
                     <TextField required multiline 
                     label='Description'
                     fullWidth={true}
                     style={{marginBottom:10}}
                     rows={4}
+                    onChange={(e)=>{
+                        setDescription(e.target.value)
+                    }}
                     />
                     <TextField
                     fullWidth={true}
                     style={{marginBottom:10}}
-                    label='ImageURL'/>
+                    label='ImageURL'
+                    onChange={(e)=>{
+                        setImageURL(e.target.value)
+                    }}
+                    />
                     <TextField 
                     label='Price'
                     fullWidth={true}
@@ -37,24 +80,29 @@ const CourseAddPage = () => {
                     InputProps={{
                         startAdornment: <InputAdornment position="start">$</InputAdornment>
                     }}
+                    onChange={(e)=>{
+                        setPrice(e.target.value)
+                    }}
                     />
                     <Box style={{
                         display:'flex', alignItems:'center',
                         marginBottom:10
                     }}>
 
-                    <Checkbox defaultChecked />
-                    <Typography style={{
-                        textAlign:'center'
-                    }}>Published</Typography>
+                    <Checkbox defaultChecked 
+                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+                    onChange={(e)=>{setPublish(e.target.checked)}}
+                    />
+                    <Typography  style={{
+                        textAlign:'center', fontSize: 22
+                    }}>Publish</Typography>
                     </Box>
-                    <Button size="large" style={{
-                            
-                            backgroundColor:'blue',
-                        color:'white'
+                    <Button size="large" 
+                    onClick={handleClick}
+                    style={{backgroundColor:'blue', color:'white'
                     }}>Add course</Button>
                 </Card>
-                
+            
     </div>
     </>
   )

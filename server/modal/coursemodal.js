@@ -14,7 +14,7 @@ const adminSchema = mongoose.Schema(
 
     {
         
-        user:String,
+        username:String,
         password:String
         
     }
@@ -23,7 +23,7 @@ const adminSchema = mongoose.Schema(
 const userSchema = mongoose.Schema(
     {
         
-        user:String,
+        username:String,
         password:String,
         purchasedCourses:[{type: mongoose.Schema.Types.ObjectId, ref:'Course'}]
     }

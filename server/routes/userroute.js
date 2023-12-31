@@ -26,7 +26,7 @@ router.post('/login',async(req,res)=>{
         const token = jwt.sign({user, role: 'user'},SECRET,{expiresIn: '1h'})
         res.json({message:'logged in successfully', token})
     }
-    res.status(403).json({message: ' Invaild username or password'})
+    res.status(403).json({message: ' Invalid username or password'})
 })  
 
 

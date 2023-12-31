@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
 router.post('/course', authJwt, async (req, res) => {
     const course = new Course(req.body)
     await course.save()
-    res.json({ message: 'Course created successfully', courseId: course.id })
+    res.json({ message: 'Course created successfully'})
 })
 
 router.put('/courses/:courseId', authJwt, async (req, res) => {

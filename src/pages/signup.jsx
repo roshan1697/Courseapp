@@ -15,13 +15,17 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
 
     const handleSubmit = async() => {
+    
+        
         const res = await axios.post('http://localhost:3000/user/signup',{
           username:email,
           password:password
         })
+        
         const resData = res.data
-
+      
         localStorage.setItem('token', resData.token)
+      
 
       }
     
@@ -71,7 +75,7 @@ const SignUp = () => {
                   
                 </Grid>
                 <Button
-                  type="submit"
+                  
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
