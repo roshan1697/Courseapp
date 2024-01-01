@@ -1,8 +1,9 @@
 import { Card, CardContent, CardMedia, Checkbox,Box, Grid, InputAdornment, TextField, Typography } from "@mui/material"
 import NavBar from "../components/navbar"
-
+import { useParams } from "react-router-dom"
 
 const CourseEditPage = () => {
+    const {id} = useParams()
     
 
     return (

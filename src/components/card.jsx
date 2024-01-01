@@ -5,9 +5,17 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
+const CardLayout = (course) => {
+  const navigate = useNavigate()
+  const handleView = (id) =>{
+      navigate('/courseapp/courses/course/'+ id)
+  }
+  const handleEdit = (id) =>{
+    navigate('/courseapp/course/edit/'+ id)
+  }
 
-const CardLayout = () => {
   return (
     <Card sx={{ maxWidth: 345 }}>
     <CardMedia
@@ -17,16 +25,22 @@ const CardLayout = () => {
     />
     <CardContent>
       <Typography gutterBottom variant="h5" component="div">
-        Lizard
+        {course.course.title}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
+        {course.course.description}
+      </Typography>
+      <Typography gutterBottom variant="h5" component="div">
+        {course.course.price}
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">View</Button>
-      <Button size="small">Edit</Button>
+      <Button 
+        onClick={handleView(course.course._id)}
+        size="small">View</Button>
+      <Button
+        onClick={handleEdit(course.course._id)}
+        size="small">Edit</Button>
     </CardActions>
   </Card>
   )
