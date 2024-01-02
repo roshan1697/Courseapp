@@ -40,9 +40,21 @@ router.put('/courses/:courseId', authJwt, async (req, res) => {
     const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true })
     if (course) {
         res.json({ message: 'Course updated successfully' })
+    }else {
+
+        res.status(404).json({ message: 'Course not found' })
     }
-    res.status(404).json({ message: 'Course not found' })
     
+})
+
+router.get('/courses/course/:courseId', authJwt , async (req,res) => {
+    const course = await Course.findById(req.params.courseId)
+    if (course) {
+        res.json({course})
+    }else {
+
+        res.status(404).json({ message: 'Course not found' })
+    }
 })
 
 router.get('/courses', authJwt, async (req, res) => {

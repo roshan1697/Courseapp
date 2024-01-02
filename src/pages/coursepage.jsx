@@ -1,9 +1,30 @@
+import axios from "axios"
 import NavBar from "../components/navbar"
 import { Box, Button, Grid, Typography } from '@mui/material'
-import {Link} from 'react-router-dom'
+import { useEffect, useState } from "react"
 
+import { useParams } from "react-router-dom"
 
 const CoursePage = () => {
+    const {id} = useParams()
+    const [course,setCourse] = useState([])
+    useEffect(()=>{
+        axios.get('http://localhost:3000/user/courses/course/'+id,{
+            headers:{
+                Authorization:'Bearer '+ localStorage.getItem('token')
+            }
+        }).then(res=>{
+            setCourse(res.data.course)
+        })
+    },[])
+
+    const handleClick = async() => {
+        const res = await axios.post('http://localhost:3000/user/courses/'+id,{
+            headers:{
+                Authorization:'Bearer '+ localStorage.getItem('token')
+            }
+        })
+    }
     
     return (
         <div>
@@ -21,24 +42,28 @@ const CoursePage = () => {
 
         <Typography style={{
         }} variant="h4">
-                Headline curve your Skill
-                with Different Way
+                {course.title}
             </Typography>
             <Typography  style={{
                                 marginTop:'1rem',
 
             }}>
-            Let's take an online course to improve your skills in a different way,
-            you can set your own study time according to your learning speed.
-            So you san study comfortable and absorb tge material easily.
+            {course.description}
             </Typography>
-            <Link to='/courseapp/signin'>
-            <Button size="large" style={{
+            <Typography style={{
+        }} variant="h4">
+                {course.price}
+            </Typography>
+            
+            <Button size="large"
+            onClick={handleClick}
+            style={{
                 marginTop:'1rem',
                 backgroundColor:'blue',
                 color:'white'
+                
             }}>Buy Now</Button>
-            </Link>
+            
             </Grid>
             <Grid item xs={12} md={4} style={{
                 paddingTop:'10%'

@@ -9,11 +9,12 @@ import { useNavigate } from 'react-router-dom';
 
 const CardLayout = (course) => {
   const navigate = useNavigate()
-  const handleView = (id) =>{
-      navigate('/courseapp/courses/course/'+ id)
+  
+  const handleView = () =>{
+      navigate('/courseapp/courses/course/'+ course.course._id)
   }
-  const handleEdit = (id) =>{
-    navigate('/courseapp/course/edit/'+ id)
+  const handleEdit = () =>{
+    navigate('/courseapp/course/edit/'+ course.course._id)
   }
 
   return (
@@ -36,10 +37,10 @@ const CardLayout = (course) => {
     </CardContent>
     <CardActions>
       <Button 
-        onClick={handleView(course.course._id)}
+        onClick={handleView}
         size="small">View</Button>
       <Button
-        onClick={handleEdit(course.course._id)}
+        onClick={handleEdit}
         size="small">Edit</Button>
     </CardActions>
   </Card>

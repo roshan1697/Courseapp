@@ -48,7 +48,15 @@ router.post('/courses/:courseId', authJwt,async(req,res)=>{
     }
     res.status(404).json({message: 'course not found'})
 })
+router.get('/courses/course/:courseId', authJwt , async (req,res) => {
+    const course = await Course.findById(req.params.courseId)
+    if (course) {
+        res.json({course})
+    }else {
 
+        res.status(404).json({ message: 'Course not found' })
+    }
+})
 router.get('/purchasedcourses', authJwt,async(req,res)=>{
     const user = await User.findOne({username: req.user.username}).populate('purchasedCourses')
     if (user) {
