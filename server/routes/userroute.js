@@ -6,6 +6,13 @@ import authJwt from "../middleware/jsonwt.js"
 
 const router = express.Router()
 
+router.get('/me',authJwt ,async(req,res)=>{
+    const user = await User.findOne({username:req.user.username})
+        res.json({
+            username:user.username
+        })
+})
+
 router.post('/signup',async(req,res)=>{
     const {username, password}= req.body
     const user = await User.findOne({username})
