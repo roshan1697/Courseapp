@@ -28,12 +28,12 @@ const Home = () => {
     }
   }
   useEffect(()=>{
-
+    checkUser()
   },[])
 
   return (
     <>
-    <NavBar />
+    <NavBar prop={userEmail}/>
     <LandingPage/>
     <Layout/>
     <Footer/>

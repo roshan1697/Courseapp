@@ -13,18 +13,16 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import Tooltip from '@mui/material/Tooltip';
-
-const NavBar = () => {
+import { useNavigate } from 'react-router-dom';
+const NavBar = (prop) => {
   const toggleSideNavbar = useRef()
-
+  const navigate = useNavigate()
+  const {userEmail} = prop
   const [anchorElUser, setAnchorElUser] = useState(null);
 
- 
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -62,12 +60,18 @@ const NavBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'black' }}>
             CourseApp
           </Typography>
+
+          {userEmail===null ?
+            <Box>
+
           <Link to='/courseapp/signup'>
           <Button sx={{  color:'black' }} color="inherit">Signup</Button>
           </Link>
           <Link to='/courseapp/signin'>
           <Button sx={{  color:'black' }} color="inherit">Login</Button>
           </Link>
+            </Box>
+            :
 
 
           <Box sx={{ flexGrow: 0 }}>
@@ -91,9 +95,13 @@ const NavBar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
+              >
               
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={()=>{
+                  localStorage.setItem('token',null)
+                  navigate('/')
+                  
+                }}>
                 <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
@@ -102,7 +110,8 @@ const NavBar = () => {
             
             </Menu>
           </Box>
-         
+              }
+        
 
 
 
