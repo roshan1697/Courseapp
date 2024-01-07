@@ -37,7 +37,7 @@ router.post('/login',async(req,res)=>{
 })  
 
 
-router.get('/courses', authJwt ,async(req,res)=>{
+router.get('/courses' ,async(req,res)=>{
     const course = await Course.find({published: true})
     res.json({course})
 })

@@ -8,6 +8,8 @@ import CoursePage from './pages/coursepage'
 import CourseEditPage from './pages/courseeditpage'
 import CourseAddPage from './pages/courseaddpage'
 import Courses from './pages/courses'
+import AdminSignin from './pages/adminsignin'
+import AdminSignup from './pages/adminsignup'
 
 const App = () => {
 
@@ -21,6 +23,10 @@ const App = () => {
       <Route path='/courseapp/course/edit/:id' element={<CourseEditPage/>}/>
       <Route path='/courseapp/course/add' element={<CourseAddPage/>}/>
       <Route path='/courseapp/courses' element={<Courses/>}/>
+      <Route path='/courseapp/adminsignin' element={<AdminSignin/>}/>
+      <Route path='/courseapp/adminsignup' element={<AdminSignup/>}/>
+
+
 
 
     </Routes>

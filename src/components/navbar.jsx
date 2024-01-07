@@ -16,12 +16,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Logout from '@mui/icons-material/Logout';
 import Tooltip from '@mui/material/Tooltip';
 import { useNavigate } from 'react-router-dom';
-const NavBar = (prop) => {
+const NavBar = ({userEmail,setUserEmail}) => {
   const toggleSideNavbar = useRef()
   const navigate = useNavigate()
-  const {userEmail} = prop
+  
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -39,12 +39,16 @@ const NavBar = (prop) => {
           top:'0.5rem'
           
           }} >
-      <AppBar position="static"  style={{
+      <AppBar position="static" 
+        style={{
           width:'98vw',
           
       }}>
         <Toolbar sx={{ backgroundColor: '#fafafa' }}>
-          <SideNavbar ref={toggleSideNavbar}/>
+          <SideNavbar ref={toggleSideNavbar}
+                    userEmail={userEmail}
+                    setUserEmail={setUserEmail}
+          />
           <IconButton
             size="large"
             edge="start"
@@ -61,7 +65,7 @@ const NavBar = (prop) => {
             CourseApp
           </Typography>
 
-          {userEmail===null ?
+          {!userEmail ?
             <Box>
 
           <Link to='/courseapp/signup'>
@@ -99,6 +103,7 @@ const NavBar = (prop) => {
               
                 <MenuItem onClick={()=>{
                   localStorage.setItem('token',null)
+                  setUserEmail(null)
                   navigate('/')
                   
                 }}>

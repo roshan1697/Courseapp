@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <>
-    <NavBar prop={userEmail}/>
+    <NavBar userEmail={userEmail} setUserEmail={setUserEmail}/>
     <LandingPage/>
     <Layout/>
     <Footer/>

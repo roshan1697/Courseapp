@@ -14,11 +14,15 @@ import SchoolIcon from '@mui/icons-material/School';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { useNavigate } from 'react-router-dom';
+import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails from '@mui/joy/AccordionDetails';
+import AccordionSummary from '@mui/joy/AccordionSummary';
 
-
-
-const SideNavbar = forwardRef((_,ref) => {
+const SideNavbar = forwardRef(({userEmail,setUserEmail}, ref ) => {
+    
     const [state, setState] = useState(false);
     const navigate = useNavigate()
     const handleNavigation = () =>{navigate('/')}
@@ -68,7 +72,9 @@ const SideNavbar = forwardRef((_,ref) => {
                   <ListItemText primary='Courses'/>
                 </ListItemButton>
               </ListItem>
-              <ListItem  disablePadding  >
+              <Accordion>
+        <AccordionSummary>
+        <ListItem  disablePadding  >
                 <ListItemButton>
                   <ListItemIcon>
                     <PortraitIcon/>
@@ -76,10 +82,42 @@ const SideNavbar = forwardRef((_,ref) => {
                   <ListItemText primary='Admin'/>
                 </ListItemButton>
               </ListItem>
+
+        </AccordionSummary>
+        <AccordionDetails>
+        <ListItem  disablePadding  
+        onClick={()=>{
+          navigate('/courseapp/adminsignup')
+        }}
+        >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <PersonPinCircleIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary='Signup'/>
+                </ListItemButton>
+              </ListItem>
+              <ListItem  disablePadding 
+              onClick={()=>{
+                navigate('/courseapp/adminsignin')
+              }}
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <PersonPinIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary='Login'/>
+                </ListItemButton>
+              </ListItem>
+        </AccordionDetails>
+      </Accordion>
           
           </List>
+          {!userEmail ? <div></div> : 
+          <div>
           <Divider />
-      <List>
+          <List>
+        
         
           <ListItem  disablePadding>
             <ListItemButton>
@@ -97,7 +135,12 @@ const SideNavbar = forwardRef((_,ref) => {
               <ListItemText primary='Settings' />
             </ListItemButton>
           </ListItem>
-          <ListItem  disablePadding>
+          <ListItem  disablePadding onClick={()=>{
+            localStorage.setItem('token',null)
+            setUserEmail(null)
+            navigate('/')
+
+          }}>
             <ListItemButton>
               <ListItemIcon>
                 <ExitToAppIcon/>
@@ -107,6 +150,8 @@ const SideNavbar = forwardRef((_,ref) => {
           </ListItem>
         
       </List>
+      </div>
+      }
       
         </Box>
       );

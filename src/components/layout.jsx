@@ -22,12 +22,20 @@ const Layout = () => {
         padding:'2rem'
     }}>
         <Typography style={{
-            textAlign:'center'
+            textAlign:'center',
+            marginBottom:'2rem'
         }} variant='h3'>Courses</Typography>
-    <Grid container spacing={{ xs: 2, md:4}} columns={{ xs: 4, sm: 8, md: 12, lg:11  }} sx={{ margin: { xs: 'auto'}}}>
+    <Grid container style={{
+        display:'flex',
+        flexWrap:'wrap',
+        justifyContent:'center'
+    }} sx={{ margin: { xs: 'auto'}}}>
         
         {courses.map((course, index) => (
-            <Grid item xs={5} sm={4} md={3} lg={2} key={index} >
+            <Grid item style={{
+                marginRight:'2rem',
+                marginBottom:'2rem'
+            }} key={index} >
                 <CardLayout course={course}/>
             </Grid>
         ))}

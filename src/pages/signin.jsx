@@ -13,6 +13,7 @@ import Container from '@mui/material/Container';
 import {Link } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -20,6 +21,8 @@ import axios from 'axios';
 const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
     const handleSubmit = async() => {
         try {
           const res = await axios.post('http://localhost:3000/user/login',{
@@ -27,6 +30,8 @@ const SignIn = () => {
             password:password
           })
           localStorage.setItem('token',res.data.token)
+          navigate('/')
+
         }
         catch(err){
           console.log(err)
