@@ -8,9 +8,15 @@ const router = express.Router()
 
 router.get('/me',authJwt ,async(req,res)=>{
     const user = await User.findOne({username:req.user.username})
-        res.json({
-            username:user.username
-        })
+        if(user){
+
+            res.json({
+                username:user.username,
+                role:user.role
+            })
+        }
+        res.status(403).json({  username:null })
+
 })
 
 router.post('/signup',async(req,res)=>{
@@ -19,7 +25,7 @@ router.post('/signup',async(req,res)=>{
     if (user) {
         res.status(403).json({message: 'user already exists'})
     }
-    const newUser = new User({username, password})
+    const newUser = new User({username, password, role:'user'})
     await newUser.save()
     const token = jwt.sign({username, role: 'user'}, SECRET, {expiresIn: '1h'})
     res.json({message: 'user created successfully', token})

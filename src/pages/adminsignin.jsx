@@ -4,16 +4,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-//import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {Link } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
 
 
@@ -92,11 +91,14 @@ const AdminSignin = () => {
                   <Grid container>
                    
                     <Grid item>
-                      <Link to="/courseapp/adminsignup" style={{
-                        color:'blue'
-                      }} variant="body2">
-                        {"Don't have an account? Sign Up"}
-                      </Link>
+                      
+                      <Link href="#" 
+                      onClick={()=>{
+                        navigate('/courseapp/adminsignup')
+                      }}
+                      variant="body2">
+                      Don't have an account? Sign Up
+                </Link>
                     </Grid>
                   </Grid>
                 </Box>

@@ -8,9 +8,14 @@ const router = express.Router()
 
 router.get('/me',authJwt ,async(req,res)=>{
     const admin = await Admin.findOne({username:req.user.username})
-        res.json({
-            username:admin.username
-        })
+        
+        if(admin){
+
+            res.json({
+                username:admin.username,
+                role:admin.role
+            })
+        }
 })
 
 router.post('/signup', async(req ,res)=>{
@@ -19,7 +24,7 @@ router.post('/signup', async(req ,res)=>{
     if (admin) {
         res.status(403).json({ message: 'Admin already exists' })
     }
-    const newAdmin = new Admin({ username: username, password: password });
+    const newAdmin = new Admin({ username: username, password: password, role:'admin' });
     await newAdmin.save()
     const token = jwt.sign({ username, role: 'admin' }, SECRET, { expiresIn: '1h' })
     res.json({ message: 'Admin created successfully', token })

@@ -7,10 +7,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {Link}from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Link from '@mui/material/Link'
 const AdminSignup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -89,13 +89,11 @@ const AdminSignup = () => {
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                   
-
-                    <Link to='/courseapp/adminsignin'
-                    style={{
-                      color:'blue',
+                    <Link href="#" onClick={()=>{
+                      navigate('/courseapp/adminsignin')
                     }} variant="body2">
-                      Already have an account? Sign in
-                    </Link>
+                  Already have an account? Sign in
+                </Link>
                   
                   </Grid>
                 </Grid>

@@ -9,11 +9,8 @@ const Layout = () => {
     const [courses, setCourses] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/user/courses',{
-            headers:{
-                Authorization:'bearer '+ localStorage.getItem('token')
-            }
-        }).then((res)=>{
+        axios.get('http://localhost:3000/user/courses'
+        ).then((res)=>{
             setCourses(res.data.course)
         })
     },[])
